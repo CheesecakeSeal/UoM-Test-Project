@@ -1,4 +1,4 @@
-package net.cheesecakeseal.testcalc;
+package com.cheesecakeseal.testcalc;
 
 import java.util.Scanner;
 
