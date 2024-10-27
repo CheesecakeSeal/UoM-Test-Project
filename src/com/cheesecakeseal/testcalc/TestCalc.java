@@ -11,7 +11,7 @@ public class TestCalc{
         double result = 0;
         char operator = '0';
 
-        System.out.println("--Calculator---");
+        System.out.println("---Calculator---");
 
         // Ask User for first number, Error may appear here if user enter anything other than a number
         System.out.print("Enter first number: ");
