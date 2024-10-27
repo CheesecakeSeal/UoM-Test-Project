@@ -2,7 +2,7 @@ package com.cheesecakeseal.testcalc;
 
 import java.util.Scanner;
 
-public class TestCalc{
+public class SampleCalc {
     public static void main(String[] args){
         // Initialising Scanner
         Scanner sc = new Scanner(System.in);
@@ -56,6 +56,9 @@ public class TestCalc{
             default:
                 System.out.println("Invalid Action.");
                 sc.close();
+                /* The reason this default case doesn't check for an invalid operator instead of the above do/while loop
+                is so that the program doesn't immediately halt when an incorrect operator is placed, which is inconvenient
+                and an issue which is easily solved*/
                 return;
         }
 
