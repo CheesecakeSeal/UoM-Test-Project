@@ -29,6 +29,7 @@ public class SampleCalcTest{
         System.setIn(new ByteArrayInputStream(data.getBytes()));
     }
 
+    // Addition Test
     @Test
     public void testAddition() {
         provideInput("5\n+\n3\n");
@@ -36,6 +37,7 @@ public class SampleCalcTest{
         assertTrue(outputStream.toString().contains("The result is: 8.0"));
     }
 
+    // Subtraction Test
     @Test
     public void testSubtraction() {
         provideInput("10\n-\n4\n");
@@ -43,6 +45,7 @@ public class SampleCalcTest{
         assertTrue(outputStream.toString().contains("The result is: 6.0"));
     }
 
+    // Multiplication Test
     @Test
     public void testMultiplication() {
         provideInput("6\n*\n7\n");
@@ -50,6 +53,7 @@ public class SampleCalcTest{
         assertTrue(outputStream.toString().contains("The result is: 42.0"));
     }
 
+    // Division Test
     @Test
     public void testDivision() {
         provideInput("20\n/\n5\n");
@@ -57,6 +61,7 @@ public class SampleCalcTest{
         assertTrue(outputStream.toString().contains("The result is: 4.0"));
     }
 
+    // Invalid Operator Check
     @Test
     public void testInvalidOperator() {
         provideInput("10\n%\n3\n+\n3\n");
@@ -64,6 +69,7 @@ public class SampleCalcTest{
         assertTrue(outputStream.toString().contains("Invalid Operator"));
     }
 
+    // Division by Zero Check
     @Test
     public void testDivisionByZero() {
         provideInput("10\n/\n0\n");
