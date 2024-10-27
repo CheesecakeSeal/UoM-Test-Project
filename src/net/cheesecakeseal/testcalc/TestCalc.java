@@ -7,17 +7,15 @@ public class TestCalc{
         // Initialising Scanner
         Scanner sc = new Scanner(System.in);
         // Initialise Variables
-        double num1 = 0;
-        double num2 = 0;
+        boolean success = false;
         double result = 0;
         char operator = '0';
-        boolean success = false;
 
         System.out.println("--Calculator---");
 
         // Ask User for first number, Error may appear here if user enter anything other than a number
         System.out.print("Enter first number: ");
-        num1 = sc.nextDouble();
+         double num1 = sc.nextDouble();
 
         // Ask User for the operation, make sure it is valid (This may be ideal to automate testing)
         do {
@@ -32,7 +30,7 @@ public class TestCalc{
 
         //Ask User for first number, Error may appear here if user enter anything other than a number
         System.out.print("Enter second number: ");
-        num2 = sc.nextDouble();
+        double num2 = sc.nextDouble();
 
 
         // Switch case based on operator to perform calculation as specified
@@ -56,7 +54,7 @@ public class TestCalc{
                 }
                 break;
             default:
-                System.out.println("Invalid operator.");
+                System.out.println("Invalid Action.");
                 sc.close();
                 return;
         }
