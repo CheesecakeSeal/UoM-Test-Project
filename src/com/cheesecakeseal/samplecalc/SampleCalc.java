@@ -1,4 +1,4 @@
-package com.cheesecakeseal.testcalc;
+package com.cheesecakeseal.samplecalc;
 
 import java.util.Scanner;
 
@@ -66,6 +66,6 @@ public class SampleCalc {
         System.out.println("The result is: " + result);
 
         sc.close();
-        System.exit(0);
+
     }
 }

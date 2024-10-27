@@ -1,4 +1,4 @@
-package com.cheesecakeseal.testcalc;
+package com.cheesecakeseal.samplecalc;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +10,7 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SampleCalcTest {
+public class SampleCalcTest{
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
