@@ -1,39 +1,62 @@
 package com.cheesecakeseal.samplecalc;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class SampleCalc {
-    public static void main(String[] args){
-        // Initialising Scanner
-        Scanner sc = new Scanner(System.in);
-        // Initialise Variables
-        boolean success = false;
+    public static void main(String[] args) {
+        runCalculator(System.in, System.out);
+    }
+
+    public static void runCalculator(InputStream input, PrintStream output) {
+        Scanner sc = new Scanner(input);
+        double num1 = 0;
+        double num2 = 0;
         double result = 0;
         char operator = '0';
+        boolean success = false;
 
-        System.out.println("---Calculator---");
+        output.println("---Calculator---");
 
-        // Ask User for first number, Error may appear here if user enter anything other than a number
-        System.out.print("Enter first number: ");
-         double num1 = sc.nextDouble();
-
-        // Ask User for the operation, make sure it is valid (This may be ideal to automate testing)
-        do {
-            System.out.print("Enter an operator (+, -, *, /): ");
-            operator = sc.next().charAt(0);
-            if(operator == '+'| operator == '-'| operator == '*'| operator == '/'){
+        // Get the first number as a valid double
+        while (!success) {
+            output.print("Enter first number: ");
+            String inputStr = sc.nextLine();
+            try {
+                num1 = Double.parseDouble(inputStr);
                 success = true;
-            }else{
-                System.out.println("Invalid Operator | Valid Operators Include +, -, *, / | Retry");
+            } catch (NumberFormatException e) {
+                output.println("Invalid input. Please enter a valid number.");
             }
-        }while(!success);
+        }
 
-        //Ask User for first number, Error may appear here if user enter anything other than a number
-        System.out.print("Enter second number: ");
-        double num2 = sc.nextDouble();
+        // Get the operator as a valid char
+        success = false;
+        while (!success) {
+            output.print("Enter an operator (+, -, *, /): ");
+            operator = sc.nextLine().charAt(0);
+            if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                success = true;
+            } else {
+                output.println("Invalid operator. Valid operators are +, -, *, /.");
+            }
+        }
 
+        // Get the second number as a valid double
+        success = false;
+        while (!success) {
+            output.print("Enter second number: ");
+            String inputStr = sc.nextLine();
+            try {
+                num2 = Double.parseDouble(inputStr);
+                success = true;
+            } catch (NumberFormatException e) {
+                output.println("Invalid input. Please enter a valid number.");
+            }
+        }
 
-        // Switch case based on operator to perform calculation as specified
+        // Perform the calculation
         switch (operator) {
             case '+':
                 result = num1 + num2;
@@ -48,24 +71,22 @@ public class SampleCalc {
                 if (num2 != 0) {
                     result = num1 / num2;
                 } else {
-                    System.out.println("Error: Division by zero is not allowed.");
+                    output.println("Error: Division by zero is not allowed.");
                     sc.close();
                     return;
                 }
                 break;
             default:
-                System.out.println("Invalid Action.");
+                output.println("Invalid action.");
                 sc.close();
-                /* The reason this default case doesn't check for an invalid operator instead of the above do/while loop
-                is so that the program doesn't immediately halt when an incorrect operator is placed, which is inconvenient
-                and an issue which is easily solved*/
                 return;
         }
 
         // Display result
-        System.out.println("The result is: " + result);
+        output.println("The result is: " + result);
 
         sc.close();
-
     }
 }
+
+
