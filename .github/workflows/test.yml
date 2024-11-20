@@ -1,0 +1,22 @@
+name: Java Integration Test on Workflow
+
+# Runs tests on pull requests and when code is pushed
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest      # Ubuntu is common and standard for testing purposes. Doesn't consume unnecessary resources
+    container:
+      image: node:20            # Node 20 has a native test runner
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: 20
+      - run: npm ci       # Runs a clean installation for testing
+      - run: npm test
+      - run: npm run build
