@@ -10,15 +10,15 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SampleCalcTest {
+public class SampleCalcUnitTest {
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outputStream));
     }
+
 
     @AfterEach
     public void restoreStreams() {

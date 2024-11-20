@@ -1,11 +1,14 @@
 package com.cheesecakeseal.samplecalc;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.MemoryUsage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +59,27 @@ public class SampleCalcLoadTestWithMetrics {
     }
 
     private void printSystemMetrics() {
-        OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
+        // Get system metrics
+        OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+        MemoryMXBean memoryBean = ManagementFactory.getMemoryMXBean();
 
-        // CPU Load - may require additional configurations for certain platforms
+        // CPU load
+        double cpuLoad = osBean.getSystemLoadAverage(); // System-wide CPU load over the last minute
+        if (cpuLoad < 0) {
+            cpuLoad = 0.0; // Negative values indicate the metric is unavailable
+        }
 
+        // Heap memory usage
+        MemoryUsage heapUsage = memoryBean.getHeapMemoryUsage();
+        long usedHeapMemory = heapUsage.getUsed();
+        long maxHeapMemory = heapUsage.getMax();
+
+        // Display metrics
+        System.out.printf(
+                "CPU Load: %.2f%%, Heap Memory: %d MB used / %d MB max%n",
+                cpuLoad * 100,
+                usedHeapMemory / (1024 * 1024),
+                maxHeapMemory / (1024 * 1024)
+        );
     }
 }
